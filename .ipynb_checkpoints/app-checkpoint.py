@@ -4,7 +4,6 @@ import numpy as np
 
 # loading the saved model
 loaded_model = pickle.load(open('models/kmeans_model.pkl', 'rb'))
-scaler = pickle.load(open('models/scaler.pkl', 'rb'))
 
 # title
 st.title('Customer Segmentation using K-Means Clustering')
@@ -28,9 +27,7 @@ if st.button('Predict Customer Segment'):
 
     input_data = np.array([[annual_income, spending_score]])
 
-    input_data_scaled = scaler.transform(input_data)
-
-    prediction = loaded_model.predict(input_data_scaled)
+    prediction = loaded_model.predict(input_data)
 
     if prediction[0] == 0:
         result = 'Medium Income Medium Spending Customer'
